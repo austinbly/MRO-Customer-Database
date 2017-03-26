@@ -1,0 +1,17 @@
+Customer Database Overview and Goals
+
+Goal: 
+-Create database of customers and order history.
+-Use to inform future decisions
+
+Plan of Execution:
+-use Github to keep revision control
+-organize customer info into relevant format
+-add in relevant info about order history (products ordered, order timing, etc.)
+-visualize the data
+-derive recommendations for action
+
+Potential Outcomes:
+-be able to predict customer order timing and size
+-identify key customers
+-encourage reorders by understanding customer habits
