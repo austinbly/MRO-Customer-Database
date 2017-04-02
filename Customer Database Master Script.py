@@ -20,24 +20,58 @@
 
 
 import csv # import the csv module
-import OrderInfoScript.py # pulls in other python script
+# import sys
+# (0, '/MRO/"Data Analysis"/"Customer Database Reference Data"')
+import OrdersInfoScript # pulls in other python script
+from glob import glob # allows for wildcard file calling
+import os
+import pandas as pd
 
-### start: define function for pulling customer order info based on customer ID
+# start: get path of currently executing file
+#import inspect, os
 
-#def custOrderInfo(customerid):
+# b=os.listdir(/MRO/'Data Analysis'/'Customer Database')
+# print b
 
-### end: define function for pulling customer order info based on customer ID
+# print "current file location is",inspect.getfile(inspect.currentframe()) # prints current file location
+# print os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe()))) # prints path to currently executing file
+
+# path = "User/austinbly/MRO/'Data Analysis'/'Customer Database'/OrdersInfoScript.py"
+
+# ### start: define function for pulling customer order info based on customer ID
+
+# #def custOrderInfo(customerid):
+
+# ### end: define function for pulling customer order info based on customer ID
 
 
-fileOpened=(csvfile)
+# #fileOpened=(Customer*.csv)
+# print glob.glob(path)
+# print type(glob.glob(path))
 
-with open('Customers*.csv','wb') as customerCSV:
 
-	custRow=0
+### start: Go to Customer CSV Repository
+
+InputFilesPath='/Users/austinbly/MRO/Data Analysis/Customer Database Reference Data'
+
+os.chdir(InputFilesPath)
+
+### end: Go to Customer CSV Repository
+
+# use glob to wildcard grab the Customers file with unknown trailing characters
+# note: glob returns a list of all entries in the directory matching requirements
+
+fhandle_Customers=glob("Customers*")[0] # assign file handle for customers CSV
+fhandle_Orders=glob("Orders*")[0] # assign file handle for orders CSV
+fhandle_OrderDetails=glob("OrderDetails*")[0] # assign file handle for order details CSV
+
+with open(fhandle_Customers) as customerCSV:
+
+	custRowNum=0
 
 	for custRow in customerCSV:
-
-		if custRow=0:
+		
+		if custRowNum==0:
 			
 			# use list index method to find location of column
 			customeridIndex=custRow.index('customerid')
@@ -48,11 +82,10 @@ with open('Customers*.csv','wb') as customerCSV:
 			phonenumberIndex=custRow.index('phonenumber')
 			emailaddressIndex=custRow.index('emailaddress')
 
-			custRow=custRow+1
-
 		else:
 
 			 # do nothing
+			 a=0
 
 		# assign columns values for each customer
 
@@ -64,10 +97,18 @@ with open('Customers*.csv','wb') as customerCSV:
 		phonenumber=custRow[phonenumberIndex]
 		emailaddress=custRow[emailaddressIndex]
 
+		if custRowNum <5:
+			print custRow
+
+		custRowNum=custRowNum+1
 		
+
 		# call script to pull customer order info based on order ID
 
-		#custOrdersTemp=custOrderInfo(customerid)
+		#custOrders=OrdersInfoScript.OrderInfoPuller(customerid)
+		
+		# custOrdersOutput=[{'ordernum1':[orderDate,['product1','product2']]},{'ordernum2':[orderDate,['product1','product2']]},...]
+		# custOrdersTemp=custOrderInfo(customerid)
 
 		
 
